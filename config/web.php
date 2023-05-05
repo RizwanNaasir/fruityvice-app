@@ -66,7 +66,11 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules'               => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'fruit'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => [
+                    'fruit',
+                    'registration',
+                    'login'
+                ]],
                 //only home route to site index
                 '/' => 'site/index',
             ],
