@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": [
+      "es5",
+      "dom"
+    ],
+    "types": ["naive-ui/volar","node"],
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./web/app/**/*.ts","./web/app/**/*.d.ts", "./web/app/**/*.js", "./web/app/**/*.vue"],
+
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}
