@@ -29,7 +29,16 @@ class FruitController extends Controller
      */
     public function actionIndex(): array
     {
+        $name = Yii::$app->request->get('name');
+        $family = Yii::$app->request->get('family');
+
         $data = Fruits::find()->with('nutrition');
+        if ($name) {
+            $data->andWhere(['name' => $name]);
+        }
+        if($family){
+            $data->andWhere(['family' => $family]);
+        }
         return $this->paginatedResponse($data);
     }
 
@@ -42,7 +51,7 @@ class FruitController extends Controller
         $model = new ActiveDataProvider([
             'query' => $model,
             'pagination' => [
-                'pageSize' => 10,
+                'pageSize' => Yii::$app->request->get('per_page'),
             ],
         ]);
         return [
@@ -52,19 +61,14 @@ class FruitController extends Controller
                 'total' => $model->getTotalCount(),
                 'page' => $model->getPagination()->getPage() + 1,
                 'per_page' => $model->getPagination()->getPageSize(),
-                'page_count' => $model->getPagination()->getPageCount(),
+                /*'page_count' => $model->getPagination()->getPageCount(),*/
+                'page_count' => (int)Yii::$app->request->get('page_count'),
             ],
         ];
     }
 
     public function actionData()
     {
-        $data = Fruits::find()->with('nutrition');
-        $name = Yii::$app->request->post('name');
-        $family = Yii::$app->request->post('family');
-
-        $names = ArrayHelper::getColumn((array)$data, $name);
-
 
 
     }
