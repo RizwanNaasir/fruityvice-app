@@ -35,38 +35,33 @@ class FruitsController extends Controller
     {
         $client = new Client([
             'base_uri' => 'https://fruityvice.com/api/',
-            'timeout'  => 2.0,
         ]);
 
         $response = $client->request('GET', 'fruit/all');
 
         if ($response->getStatusCode() === 200) {
             $data = json_decode($response->getBody(), true);
-            try {
-                foreach ($data as $item) {
-                    $model = new Fruits();
-                    $nutritionFromReq = $item['nutritions'];
-                    $model->name = $item['name'];
-                    $model->family = $item['family'];
-                    $model->order = $item['order'];
-                    $model->genus = $item['genus'];
-                    $nutrition = new Nutrition();
-                    $nutrition->calories = $nutritionFromReq['calories'];
-                    $nutrition->fat = $nutritionFromReq['fat'];
-                    $nutrition->sugar = $nutritionFromReq['sugar'];
-                    $nutrition->carbohydrates = $nutritionFromReq['carbohydrates'];
-                    $nutrition->protein = $nutritionFromReq['protein'];
-                    if( $nutrition->save()){
-                        $model->nutrition_id = $nutrition->id;
-                        if (!$model->save()) {
-                            Yii::error($model->getErrors());
-                        }
-                    }else{
-                        Yii::error($nutrition->getErrors());
+            foreach ($data as $item) {
+                $model = new Fruits();
+                $nutritionFromReq = $item['nutritions'];
+                $model->name = $item['name'];
+                $model->family = $item['family'];
+                $model->order = $item['order'];
+                $model->genus = $item['genus'];
+                $nutrition = new Nutrition();
+                $nutrition->calories = $nutritionFromReq['calories'];
+                $nutrition->fat = $nutritionFromReq['fat'];
+                $nutrition->sugar = $nutritionFromReq['sugar'];
+                $nutrition->carbohydrates = $nutritionFromReq['carbohydrates'];
+                $nutrition->protein = $nutritionFromReq['protein'];
+                if( $nutrition->save()){
+                    $model->nutrition_id = $nutrition->id;
+                    if (!$model->save()) {
+                        Yii::error($model->getErrors());
                     }
+                }else{
+                    Yii::error($nutrition->getErrors());
                 }
-            }catch (\Exception $e ){
-                throw new $e;
             }
             exit();
             // Do something with the data
@@ -74,13 +69,14 @@ class FruitsController extends Controller
             Yii::error('Failed to fetch data from API: ' . $response->getStatusCode());
         }
 
-        // Send Mail to Admin
-        Yii::$app->mailer->compose()
-            ->setFrom('')
-            ->setTo('')
-            ->setHtmlBody('html')
-            ->setSubject('subject')
-            ->send();
+//        // Send Mail to Admin
+//        Yii::$app->mailer->compose()
+//            ->setFrom('')
+//            ->setTo('')
+//            ->setHtmlBody('html')
+//            ->setSubject('subject')
+//            ->send();
+        echo "Fruits fetched successfully.\n";
         return ExitCode::OK;
     }
 }

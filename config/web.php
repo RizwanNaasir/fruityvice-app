@@ -67,7 +67,8 @@ $config = [
             'showScriptName' => false,
             'rules'               => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'fruit'],
-                '<url:(.*)>' => 'site/index',
+                //only home route to site index
+                '/' => 'site/index',
             ],
         ],
 

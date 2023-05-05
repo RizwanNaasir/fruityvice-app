@@ -8,7 +8,7 @@ export const fruitRef = reactive({
 })
 export const getFruits = async () => {
 
-    return await client.get("/fruits")
+    return await client.get("/fruit")
         .then((response) => {
             fruitRef.fruits = response.data;
             fruitRef.loading = false;

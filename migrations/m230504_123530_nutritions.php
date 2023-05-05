@@ -10,7 +10,6 @@ class m230504_123530_nutritions extends Migration
     {
         $this->createTable('nutritions', [
             'id' => $this->primaryKey(),
-            'fruit_id' => $this->integer()->notNull(),
             'calories' => $this->integer()->notNull(),
             'fat' => $this->decimal(5,2)->notNull(),
             'sugar' => $this->decimal(5,2)->notNull(),
