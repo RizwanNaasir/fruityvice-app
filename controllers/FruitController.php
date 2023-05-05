@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Favorite;
 use app\models\Fruits;
+use app\models\Nutrition;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -70,30 +71,6 @@ class FruitController extends Controller
             ],
         ];
     }
-
-    /*public function actionData()
-    {
-        $id = Yii::$app->request->post('fruit_id');
-        $data = Fruits::find()->where(['id' => $id])->one();
-
-        if($data){
-            $favorite = new Favorite();
-            $favorite->fruit_id = $data->id;
-            $favorite->user_id = random_int(1, 5);
-            $favorite->save();
-
-            Yii::$app->response->statusCode = 201;
-            return [
-                'message' => 'Fruit favorite created successfully',
-                'data' => $favorite,
-                ];
-        }
-        else{
-            Yii::$app->response->statusCode = 404;
-            return ['error' => 'Id does not exist'];
-        }
-    }*/
-
     public function actionCreateData()
     {
         $id = Yii::$app->request->post('fruit_id');
@@ -116,4 +93,22 @@ class FruitController extends Controller
             return ['error' => 'Id does not exist'];
         }
     }
+
+    public function actionGetNutrition()
+   {
+       $id = Yii::$app->request->get('nutrition_id');
+         $data = $data = Fruits::find()->where(['nutrition_id' => $id])->one();
+        if($data)
+        {
+            $nutrition = Nutrition::find()->where(['id' => $data->nutrition_id])->one();
+            Yii::$app->response->statusCode = 201;
+            return [
+                'data' => $nutrition,
+            ];
+        } else{
+            Yii::$app->response->statusCode = 404;
+            return ['message' => 'Nutrition id does not exist'];
+        }
+
+   }
 }
