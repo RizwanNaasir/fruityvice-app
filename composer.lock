@@ -1,20 +1,20 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "07fbc7600b680ddcd2e7e3e90ec039b3",
-    "packages": [
-        {
-            "name": "bower-asset/bootstrap",
-            "version": "v5.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
-            },
-            "dist": {
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "27b8543a3c36f1c323791f2ad5bb18e7",
+  "packages": [
+    {
+      "name": "bower-asset/bootstrap",
+      "version": "v5.2.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/twbs/bootstrap.git",
+        "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
+      },
+      "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/cb021439c683d9805e2864c58095b92d405e9b11",
                 "reference": "cb021439c683d9805e2864c58095b92d405e9b11"
@@ -734,26 +734,106 @@
                 "csprng",
                 "polyfill",
                 "pseudorandom",
-                "random"
+              "random"
             ],
-            "support": {
-                "email": "info@paragonie.com",
-                "issues": "https://github.com/paragonie/random_compat/issues",
-                "source": "https://github.com/paragonie/random_compat"
-            },
-            "time": "2020-10-15T08:29:30+00:00"
+          "support": {
+            "email": "info@paragonie.com",
+            "issues": "https://github.com/paragonie/random_compat/issues",
+            "source": "https://github.com/paragonie/random_compat"
+          },
+          "time": "2020-10-15T08:29:30+00:00"
+        },
+    {
+      "name": "phpmailer/phpmailer",
+      "version": "v6.8.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/PHPMailer/PHPMailer.git",
+        "reference": "df16b615e371d81fb79e506277faea67a1be18f1"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/df16b615e371d81fb79e506277faea67a1be18f1",
+        "reference": "df16b615e371d81fb79e506277faea67a1be18f1",
+        "shasum": ""
+      },
+      "require": {
+        "ext-ctype": "*",
+        "ext-filter": "*",
+        "ext-hash": "*",
+        "php": ">=5.5.0"
+      },
+      "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "doctrine/annotations": "^1.2.6 || ^1.13.3",
+        "php-parallel-lint/php-console-highlighter": "^1.0.0",
+        "php-parallel-lint/php-parallel-lint": "^1.3.2",
+        "phpcompatibility/php-compatibility": "^9.3.5",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^3.7.1",
+        "yoast/phpunit-polyfills": "^1.0.4"
+      },
+      "suggest": {
+        "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
+        "ext-openssl": "Needed for secure SMTP sending and DKIM signing",
+        "greew/oauth2-azure-provider": "Needed for Microsoft Azure XOAUTH2 authentication",
+        "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+        "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+        "psr/log": "For optional PSR-3 debug logging",
+        "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)",
+        "thenetworg/oauth2-azure": "Needed for Microsoft XOAUTH2 authentication"
+      },
+      "type": "library",
+      "autoload": {
+        "psr-4": {
+          "PHPMailer\\PHPMailer\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "LGPL-2.1-only"
+      ],
+      "authors": [
+        {
+          "name": "Marcus Bointon",
+          "email": "phpmailer@synchromedia.co.uk"
         },
         {
-            "name": "psr/container",
-            "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+          "name": "Jim Jagielski",
+          "email": "jimjag@gmail.com"
+        },
+        {
+          "name": "Andy Prevost",
+          "email": "codeworxtech@users.sourceforge.net"
+        },
+        {
+          "name": "Brent R. Matzelle"
+        }
+      ],
+      "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+      "support": {
+        "issues": "https://github.com/PHPMailer/PHPMailer/issues",
+        "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.8.0"
+      },
+      "funding": [
+        {
+          "url": "https://github.com/Synchro",
+          "type": "github"
+        }
+      ],
+      "time": "2023-03-06T14:43:22+00:00"
+    },
+    {
+      "name": "psr/container",
+      "version": "2.0.2",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/container.git",
+        "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "shasum": ""
             },
@@ -1093,24 +1173,83 @@
                     "email": "ralph.khattar@gmail.com"
                 }
             ],
-            "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
-            "time": "2019-03-08T08:55:37+00:00"
+          "description": "A polyfill for getallheaders.",
+          "support": {
+            "issues": "https://github.com/ralouphie/getallheaders/issues",
+            "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+          },
+          "time": "2019-03-08T08:55:37+00:00"
+        },
+    {
+      "name": "swiftmailer/swiftmailer",
+      "version": "v5.4.12",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/swiftmailer/swiftmailer.git",
+        "reference": "181b89f18a90f8925ef805f950d47a7190e9b950"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/181b89f18a90f8925ef805f950d47a7190e9b950",
+        "reference": "181b89f18a90f8925ef805f950d47a7190e9b950",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.3"
+      },
+      "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "symfony/phpunit-bridge": "~3.2"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "5.4-dev"
+        }
+      },
+      "autoload": {
+        "files": [
+          "lib/swift_required.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Chris Corbyn"
         },
         {
-            "name": "symfony/deprecation-contracts",
-            "version": "v3.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        }
+      ],
+      "description": "Swiftmailer, free feature-rich PHP mailer",
+      "homepage": "https://swiftmailer.symfony.com",
+      "keywords": [
+        "email",
+        "mail",
+        "mailer"
+      ],
+      "support": {
+        "issues": "https://github.com/swiftmailer/swiftmailer/issues",
+        "source": "https://github.com/swiftmailer/swiftmailer/tree/v5.4.12"
+      },
+      "abandoned": "symfony/mailer",
+      "time": "2018-07-31T09:26:32+00:00"
+    },
+    {
+      "name": "symfony/deprecation-contracts",
+      "version": "v3.2.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/deprecation-contracts.git",
+        "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
                 "reference": "e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e",
                 "shasum": ""
             },
@@ -2261,26 +2400,83 @@
                 },
                 {
                     "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
+                  "type": "open_collective"
                 },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/yiisoft/yii2-composer",
-                    "type": "tidelift"
-                }
+              {
+                "url": "https://tidelift.com/funding/github/packagist/yiisoft/yii2-composer",
+                "type": "tidelift"
+              }
             ],
-            "time": "2020-06-24T00:04:01+00:00"
+          "time": "2020-06-24T00:04:01+00:00"
         },
+    {
+      "name": "yiisoft/yii2-swiftmailer",
+      "version": "2.0.7",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
+        "reference": "8a03a62cbcb82e7697d3002eb43a8d2637f566ec"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/8a03a62cbcb82e7697d3002eb43a8d2637f566ec",
+        "reference": "8a03a62cbcb82e7697d3002eb43a8d2637f566ec",
+        "shasum": ""
+      },
+      "require": {
+        "swiftmailer/swiftmailer": "~5.0",
+        "yiisoft/yii2": "~2.0.4"
+      },
+      "type": "yii2-extension",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "2.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "yii\\swiftmailer\\": ""
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "BSD-3-Clause"
+      ],
+      "authors": [
         {
-            "name": "yiisoft/yii2-symfonymailer",
-            "version": "2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-symfonymailer.git",
-                "reference": "82f5902551a160633c4734b5096977ce76a809d9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-symfonymailer/zipball/82f5902551a160633c4734b5096977ce76a809d9",
+          "name": "Paul Klimov",
+          "email": "klimov.paul@gmail.com"
+        }
+      ],
+      "description": "The SwiftMailer integration for the Yii framework",
+      "keywords": [
+        "email",
+        "mail",
+        "mailer",
+        "swift",
+        "swiftmailer",
+        "yii2"
+      ],
+      "support": {
+        "forum": "http://www.yiiframework.com/forum/",
+        "irc": "irc://irc.freenode.net/yii",
+        "issues": "https://github.com/yiisoft/yii2-swiftmailer/issues",
+        "source": "https://github.com/yiisoft/yii2-swiftmailer",
+        "wiki": "http://www.yiiframework.com/wiki/"
+      },
+      "time": "2017-05-01T08:29:00+00:00"
+    },
+    {
+      "name": "yiisoft/yii2-symfonymailer",
+      "version": "2.0.4",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/yiisoft/yii2-symfonymailer.git",
+        "reference": "82f5902551a160633c4734b5096977ce76a809d9"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/yiisoft/yii2-symfonymailer/zipball/82f5902551a160633c4734b5096977ce76a809d9",
                 "reference": "82f5902551a160633c4734b5096977ce76a809d9",
                 "shasum": ""
             },

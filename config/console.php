@@ -17,6 +17,18 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mailtrap.io',
+                'port' => '2525',
+                'encryption' => 'tls', // or 'ssl' if your SMTP server requires it
+                'username' => 'fbd63e193dd979',
+                'password' => '833c49b68fdf8f',
+            ],
+        ],
+        // ...
         'log' => [
             'targets' => [
                 [
