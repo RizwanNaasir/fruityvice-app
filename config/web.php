@@ -1,5 +1,7 @@
 <?php
 
+use yii\web\Response;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -17,6 +19,17 @@ $config = [
         '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.mailtrap.io',
+                'username' => 'fbd63e193dd979',
+                'password' => '833c49b68fdf8f',
+                'port' => '2525',
+                'encryption' => 'tls',
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'wigFxyN4gxKu0JP4yHnKiTLh9ykkpLea',
@@ -32,7 +45,7 @@ $config = [
         'response' => [
             // ...
             'formatters' => [
-                \yii\web\Response::FORMAT_JSON => [
+                Response::FORMAT_JSON => [
                     'class' => 'yii\web\JsonResponseFormatter',
                     'prettyPrint' => YII_DEBUG, // use "pretty" output in debug mode
                     'keepObjectType' => false, // keep object type for zero-indexed objects
@@ -50,12 +63,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
-        ],
+
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
