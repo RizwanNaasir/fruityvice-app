@@ -2,19 +2,34 @@ import {client} from "./client";
 import {reactive} from "vue";
 
 export type FruitRefT = {
-    fruits: unknown[],
+    fruits: {
+        data: [],
+        pagination: {
+            total: number,
+            page: number,
+            per_page: number,
+            page_count: number
+        }
+    },
     loading: boolean,
     error: any,
 }
 export const fruitRef: FruitRefT = reactive({
-    fruits: [],
+    fruits: {
+        data: [],
+        pagination: {
+            total: 0,
+            page: 0,
+            per_page: 0,
+            page_count: 0
+        }
+    },
     loading: true,
     error: null,
 })
 
 export type ParamsT = {
     page: number,
-    pageSize: number,
     filter: {
         name: string|null,
         family: string|null,
