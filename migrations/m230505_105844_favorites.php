@@ -2,8 +2,10 @@
 
 use yii\db\Migration;
 
-class m230505_105148_favorites extends Migration
+
+class m230505_105844_favorites extends Migration
 {
+
     public function safeUp()
     {
         $this->createTable('favorites', [
@@ -14,11 +16,11 @@ class m230505_105148_favorites extends Migration
             'updated_at' => $this->dateTime(),
         ]);
     }
+
+
     public function safeDown()
     {
-        echo "m230505_105148_favorites cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('favorites');
     }
 
     /*
@@ -30,7 +32,7 @@ class m230505_105148_favorites extends Migration
 
     public function down()
     {
-        echo "m230505_105148_favorites cannot be reverted.\n";
+        echo "m230505_105844_favorites cannot be reverted.\n";
 
         return false;
     }
