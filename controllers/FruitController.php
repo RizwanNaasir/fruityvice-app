@@ -29,15 +29,16 @@ class FruitController extends Controller
      */
     public function actionIndex(): array
     {
-        $name = Yii::$app->request->get('name');
-        $family = Yii::$app->request->get('family');
+        $request = Yii::$app->request;
+        $filters = $request->get('filter');
 
         $data = Fruits::find()->with('nutrition');
-        if ($name) {
-            $data->andWhere(['name' => $name]);
+
+        if (!empty($filters['name'])) {
+            $data->andWhere(['name' => $filters['name']]);
         }
-        if($family){
-            $data->andWhere(['family' => $family]);
+        if(!empty($filters['family'])){
+            $data->andWhere(['family' => $filters['family']]);
         }
         return $this->paginatedResponse($data);
     }
@@ -48,11 +49,17 @@ class FruitController extends Controller
      */
     public function paginatedResponse(ActiveQuery $model): array
     {
+        $request = Yii::$app->request;
         $model = new ActiveDataProvider([
             'query' => $model,
             'pagination' => [
-                'pageSize' => Yii::$app->request->get('per_page'),
+                'pageSize' => $request->get('pageSize'),
             ],
+//            'sort' => [
+//                'defaultOrder' => $request->get('sort')
+//                    ? ArrayHelper::map($request->get('sort'), 'field', 'order')
+//                    : ['id' => SORT_ASC],
+//            ],
         ]);
         return [
             'status' => 200,
@@ -62,7 +69,7 @@ class FruitController extends Controller
                 'page' => $model->getPagination()->getPage() + 1,
                 'per_page' => $model->getPagination()->getPageSize(),
                 /*'page_count' => $model->getPagination()->getPageCount(),*/
-                'page_count' => (int)Yii::$app->request->get('page_count'),
+                'page_count' => (int)$request->get('page_count'),
             ],
         ];
     }

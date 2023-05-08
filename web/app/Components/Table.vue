@@ -1,17 +1,39 @@
 <template>
+    <n-input
+            v-model:value="filterName as string"
+            placeholder="Search by name"
+            clearable
+            size="small"
+            style="width: 200px; margin-bottom: 10px"
+            @change="updateTable(page, pageSize)"
+    />
+    <n-input
+            v-model:value="filterFamily as string"
+            placeholder="Search by family"
+            clearable
+            size="small"
+            style="width: 200px; margin-bottom: 10px"
+            @change="updateTable(page, pageSize)"
+    />
+
     <n-data-table
             pagination-behavior-on-filter="first"
             :columns="columns"
             :data="fruitRef.fruits?.data"
             :loading="fruitRef.loading"
-            :pagination="pagination"
+            :pagination="paginationReactive"
     />
 </template>
 
 <script lang="ts" setup>
-import {onMounted} from 'vue'
-import {DataTableColumns, NDataTable} from 'naive-ui'
-import {getFruits,fruitRef} from "../Api/useFruites";
+import {onMounted, reactive, ref} from 'vue'
+import {DataTableColumns, NDataTable, NInput} from 'naive-ui'
+import {getFruits, fruitRef, ParamsT} from "../Api/useFruites";
+
+const filterName = ref<string | null>(null);
+const filterFamily = ref<string | null>(null);
+const page = ref<number>(1);
+const pageSize = ref<number>(15);
 
 type RowData = {
     id: number
@@ -37,35 +59,42 @@ const columns: DataTableColumns<RowData> = [
     {
         title: 'Genus',
         key: 'genus'
-    },
-    // {
-    //     title: 'Address',
-    //     key: 'address',
-    //     defaultFilterOptionValues: [],
-    //     filterOptions: [
-    //         {
-    //             label: 'London',
-    //             value: 'London'
-    //         },
-    //         {
-    //             label: 'New York',
-    //             value: 'New York'
-    //         }
-    //     ],
-    //     // filter (value, row) {
-    //     //     return !!~row.address.indexOf(String(value))
-    //     // }
-    // }
+    }
 ]
 
-const pagination = {
-    pageSize: 2,
+const paginationReactive = reactive({
+    page: page.value,
+    pageSize: pageSize.value,
+    itemCount: fruitRef.fruits?.['pagination']?.total as number,
     showSizePicker: true,
-    showQuickJumper: true,
-};
-
-onMounted(() => {
-    getFruits();
+    pageSizes: [15, 25, 50, 100],
+    onChange: async (page: number) => {
+        await updateTable(page, pageSize.value)
+    },
+    onUpdatePageSize: async (pageSize: number) => {
+        await updateTable(page.value, pageSize)
+    }
+})
+const params: ParamsT = reactive({
+    page: page.value,
+    pageSize: pageSize.value,
+    filter: {
+        name: filterName.value,
+        family: filterFamily.value,
+    }
 });
+onMounted(() => {
+    getFruits(params);
+});
+const updateTable = async (page: number, pageSize: number) => {
+    await getFruits({
+        page: page,
+        pageSize: pageSize,
+        filter: {
+            name: filterName.value,
+            family: filterFamily.value,
+        }
+    });
+}
 
 </script>
