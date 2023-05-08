@@ -16,6 +16,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
+use yii\helpers\BaseConsole;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -29,12 +30,10 @@ class FruitsController extends Controller
 {
     /**
      * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
      * @return int Exit code
      * @throws GuzzleException
-     * @throws Exception
      */
-    public function actionFetch()
+    public function actionFetch(): int
     {
 
         $client = new Client([
@@ -58,19 +57,23 @@ class FruitsController extends Controller
                 $nutrition->sugar = $nutritionFromReq['sugar'];
                 $nutrition->carbohydrates = $nutritionFromReq['carbohydrates'];
                 $nutrition->protein = $nutritionFromReq['protein'];
-                if( $nutrition->save()){
+                if ($nutrition->save()) {
                     $model->nutrition_id = $nutrition->id;
                     if (!$model->save()) {
                         Yii::error($model->getErrors());
                     }
-                }else{
+                } else {
                     Yii::error($nutrition->getErrors());
                 }
             }
+            $this->stdout("Fruits fetched successfully.\n", BaseConsole::FG_GREEN, BaseConsole::BOLD);
+            $this->stdout("Sending Email.\n", BaseConsole::FG_GREEN, BaseConsole::BOLD);
             $this->sendMail();
+            $this->stdout("Email Sent.\n", BaseConsole::FG_GREEN, BaseConsole::BOLD);
             exit();
         } else {
             Yii::error('Failed to fetch data from API: ' . $response->getStatusCode());
+            $this->stdout("Failed to fetch data from API: " . $response->getStatusCode() . "\n", BaseConsole::FG_RED, BaseConsole::BOLD);
         }
 
         echo "Fruits fetched successfully.\n";
@@ -94,7 +97,7 @@ class FruitsController extends Controller
     }
 
     /**
-     * @return void
+     * @return string
      */
     public function sendMail(): string
     {
@@ -116,8 +119,8 @@ class FruitsController extends Controller
             $mail->send();
             return 'message sent';
         } catch (Exception $e) {
-            dd($e->getMessage());
             Yii::error($e->getMessage());
+            return 'Message could not be sent. Mailer Error: '. $e->getMessage();
         }
     }
 }

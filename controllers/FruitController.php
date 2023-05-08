@@ -2,9 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Favorite;
 use app\models\Fruits;
-use app\models\Nutrition;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -46,7 +44,7 @@ class FruitController extends Controller
         $model = new ActiveDataProvider([
             'query' => $model,
             'pagination' => [
-                'pageSize' => $request->get('pageSize',10),
+                'pageSize' => $request->get('pageSize', 10),
             ],
         ]);
         return [
