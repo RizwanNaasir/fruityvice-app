@@ -2,6 +2,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -43,12 +44,15 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['id' => $id]);
     }
 
+    /**
+     * @throws NotSupportedException
+     */
     public static function findIdentityByAccessToken($token, $type = null)
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
 
-    public static function findByUsername($username)
+    public static function findByUsername($username): ?User
     {
         return static::findOne(['username' => $username]);
     }
@@ -78,12 +82,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->getAuthKey() === $authKey;
     }
-    public function beforeSave($insert)
+    public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
                 $this->created_at = date('Y-m-d H:i:s');
-                /*$this->status = self::STATUS_ACTIVE;*/
             }
             $this->updated_at = date('Y-m-d H:i:s');
             return true;

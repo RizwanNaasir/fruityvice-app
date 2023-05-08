@@ -1,10 +1,12 @@
 <template>
+    <n-notification-provider>
         <n-card title="Fruits" size="huge">
-                <Table/>
+            <FruitsTable/>
         </n-card>
+    </n-notification-provider>
 </template>
 
 <script setup lang="ts">
-import Table from "./Components/Table.vue";
-import {NCard} from 'naive-ui'
+import FruitsTable from "./Components/FruitsTable.vue";
+import {NCard, NNotificationProvider} from 'naive-ui'
 </script>

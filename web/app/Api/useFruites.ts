@@ -47,3 +47,15 @@ export const getFruits = async (params: ParamsT) => {
             fruitRef.loading = false;
         });
 };
+
+export const getNutrients = async (fruitId: number) => {
+    return await client.get("/fruit/nutrients", {params: {fruit_id: fruitId}})
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            fruitRef.error = error;
+            fruitRef.loading = false;
+        }).finally(() => {
+            fruitRef.loading = false;
+        });
+}

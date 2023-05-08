@@ -1,11 +1,9 @@
 {
   "scripts": {
-    "dev": "mix watch",
-    "prod": "mix --production",
-    "lint": "eslint --ext .js,.vue resources/js"
+    "dev": "vite",
+    "build": "vite build"
   },
   "dependencies": {
-    "@vitejs/plugin-vue": "^4.2.1",
     "axios": "^1.4.0",
     "core-js": "^3.30.1",
     "mix-env-file": "^0.1.1",
@@ -14,11 +12,14 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
+    "@vitejs/plugin-vue": "^4.2.1",
     "@vue/compiler-sfc": "^3.2.47",
     "laravel-mix": "^6.0.49",
+    "laravel-vite-plugin": "^0.7.4",
     "naive-ui": "^2.34.3",
     "ts-loader": "^9.4.2",
     "typescript": "^5.0.4",
+    "vite": "^4.3.5",
     "vue-loader": "^17.1.0"
   }
 }
